@@ -20,7 +20,7 @@ export
     conv_wt,	    # Get convolution weights for a new location
     knot_wt,        # Return matrix of conv weights for new locations
     nknot,	        # Return number of knots
-    predict,        # Give value of GP at new locations
+    predict        # Give value of GP at new locations
 
 # include convolution kernels
 include("ConvolutionKernels.jl")
@@ -89,6 +89,19 @@ function knot_wt(gpc::GaussianProcessConvolution,
 
     for l in 1:nloc
         k_wt[l, :] = conv_wt(kern, knot_locs(gpc)' .- new_locs[l, :]')'
+    end
+    k_wt
+end
+
+function knot_wt(knot_locs::Array{Float64},
+                 kern::AbstractConvolutionKernel,
+                 new_locs::Array{Float64})
+    nloc = size(new_locs, 1)
+    nknot = size(knot_locs, 1)
+    k_wt = Array{Float64, 2}(nloc, nknot)
+
+    for l in 1:nloc
+        k_wt[l, :] = conv_wt(kern, knot_locs' .- new_locs[l, :]')'
     end
     k_wt
 end

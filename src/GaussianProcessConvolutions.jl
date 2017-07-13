@@ -20,7 +20,7 @@ export
     conv_wt,	    # Get convolution weights for a new location
     knot_wt,        # Return matrix of conv weights for new locations
     nknot,	        # Return number of knots
-    predict,        # Give value of GP at new locations
+    predict        # Give value of GP at new locations
 
 # include convolution kernels
 include("ConvolutionKernels.jl")

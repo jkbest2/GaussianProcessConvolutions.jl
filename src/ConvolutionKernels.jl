@@ -1,4 +1,4 @@
-abstract AbstractConvolutionKernel
+abstract type AbstractConvolutionKernel end
 
 immutable SquaredExponentialKernel <: AbstractConvolutionKernel
     Σ::AbstractPDMat
